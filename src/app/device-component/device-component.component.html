@@ -1,0 +1,43 @@
+<mat-expansion-panel (opened)="getPins()">
+          
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{device.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{device.description}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let pin of pins">
+        <mat-card style="background-color: #f7f7f7">
+            <div class="row">
+              <div class="col-md-2">
+                  <mat-form-field style="width: 100%">
+                      <input  matInput placeholder="Pin {{pin.numberOnDevice}}" disabled value="{{pin.description}}">
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field style="width: 100%">
+                      <mat-label>Durata</mat-label>
+                      <select matNativeControl [(ngModel)]="pin.expiration_time" [disabled]="pin.state">
+                        <option value="0">Fara timp</option>
+                        <option value="1">1 minut</option>
+                        <option value="15">15 minute</option>
+                        <option value="30">30 minute</option>
+                        <option value="45">45 minute</option>
+                        <option value="60">1h</option>
+                        <option value="90">1h 30m</option>
+                        <option value="120">2h</option>
+                      </select>
+                    </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                  <mat-slide-toggle style="padding-left: 50%" (toggleChange)="switchEvent(pin)" [checked]="pin.state"></mat-slide-toggle>
+              </div>
+            </div>
+          </mat-card>
+          <br>
+    </div>
+    
+
+  </mat-expansion-panel>

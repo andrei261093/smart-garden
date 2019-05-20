@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Smart-Garden</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container" style="padding-top: 20px">
+  <div class="row">
+    <div class="col-md-6" style="padding: 5px">
+        <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>Status sistem:</mat-card-title>
+            </mat-card-header>
+           
+            <mat-card-content>
+             
+              <mat-list *ngIf="activePins.length > 0">
+                <ul>
+                  <li *ngFor="let activePin of activePins">
+                    <p>{{activePin.deviceName}} - Pinul <b>{{activePin.description}}</b> se opreste la data de <b>{{activePin.endDate | date:'dd/MM/yyyy HH:mm'}}</b></p>
+                  </li>
+                </ul>
+              </mat-list>
+              <mat-list *ngIf="activePins.length == 0">
+                  <ul>
+                    <li>
+                      <p>Niciun releu pornit.</p>
+                    </li>
+                  </ul>
+                </mat-list>
+            </mat-card-content>
+          </mat-card>
+    </div>
+    <div class="col-md-6" style="padding: 5px">
+      <mat-accordion >
+        <div *ngFor="let device of devices" style="padding-bottom: 5px">
+            <app-device-component [device]="device"></app-device-component>
+        </div>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
